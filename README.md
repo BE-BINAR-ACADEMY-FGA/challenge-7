@@ -1,6 +1,4 @@
-# Starter Express API
-
-This is a starter template for building an Express API.
+# CHALLENGE 7
 
 ## Getting Started
 

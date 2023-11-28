@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use("/api", router);
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("Challenge 7");
 });
 
 app.listen(PORT, () => {
