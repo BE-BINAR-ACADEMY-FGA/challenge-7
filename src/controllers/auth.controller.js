@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const { templateResponse } = require("../helpers/template-response");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const sentry = require("../lib/sentry");
 const prisma = new PrismaClient();
 
 const register = async (req, res) => {
@@ -31,6 +32,7 @@ const register = async (req, res) => {
     let resp = templateResponse("success", "User created successfully", user);
     return res.status(201).json(resp);
   } catch (error) {
+    sentry.captureException(error);
     let resp = templateResponse("error", "User creation failed", error);
     return res.status(400).json(resp);
   }
@@ -67,6 +69,7 @@ const login = async (req, res) => {
     });
     return res.status(200).json(resp);
   } catch (error) {
+    sentry.captureException(error);
     let resp = templateResponse(
       "Bad Request",
       "Invalid email or password",
@@ -96,6 +99,7 @@ const forgotPassword = async (req, res) => {
       return res.status(200).json(resp);
     }
   } catch (error) {
+    sentry.captureException(error);
     let resp = templateResponse(
       "Bad Request",
       "Invalid email or password",

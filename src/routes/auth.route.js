@@ -5,7 +5,7 @@ const {
   login,
   forgotPassword,
 } = require("../controllers/auth.controller");
-const { CheckRegister } = require("../middleware/middleware");
+const { CheckRegister } = require("../middlewares/middleware");
 
 router.post("/register", CheckRegister, register);
 router.post("/login", login);
